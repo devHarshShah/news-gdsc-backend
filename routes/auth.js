@@ -5,7 +5,8 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const fetchuser = require('../middleware/fetchuser');
-JWT_SECRET = 'HelloIAmHarshShahandIamAStudentAtVITVellore';
+require('dotenv').config();
+const JWT_SECRET = process.env.JWT_SECRET;
 
 router.post('/createuser', [body('username', 'Enter a valid username').isLength({ min: 3 }), body('email', 'Must be a valid email').isEmail(), body('password', 'Must be at least 5 Characters').isLength({ min: 5 })], async (req, res) => {
   let success = false;
